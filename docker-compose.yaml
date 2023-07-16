@@ -43,6 +43,7 @@ services:
       - "8000:8000"
     volumes:
       - ./core:/opt/todolist/core
+      - ./goals:/opt/todolist/goals
       - ./todolist:/opt/todolist/todolist
 
   collect_static:
@@ -54,7 +55,7 @@ services:
 
 
   frontend:
-    image: sermalenk/skypro-front:lesson-34
+    image: sermalenk/skypro-front:lesson-37
     restart: on-failure
     ports:
       - "80:80"

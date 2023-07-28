@@ -6,7 +6,7 @@ from core.models import User
 from core.serializers import CreateUserSerializer, LoginSerializer, ProfileSerializer, UpdatePasswordSerializer
 
 
-class SignUpView(generics.CreateAPIView):
+class SignUpView(generics.CreateAPIView):  # Ручка на регистрацию
     serializer_class = CreateUserSerializer
 
     def post(self, request, *args, **kwargs):
@@ -16,7 +16,7 @@ class SignUpView(generics.CreateAPIView):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-class LoginView(generics.GenericAPIView):
+class LoginView(generics.GenericAPIView):  # Ручка на вход
     serializer_class = LoginSerializer
 
     def post(self, request, *args, **kwargs):

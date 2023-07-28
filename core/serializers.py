@@ -13,14 +13,14 @@ class CreateUserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id', 'username', 'first_name', 'last_name', 'email', 'password', 'password_repeat')
 
-    def validate(self, attrs: dict) -> dict:
+    def validate(self, attrs: dict) -> dict:  # Делаем проверку на совпадение паролей
         if attrs['password'] != attrs['password_repeat']:
             raise exceptions.ValidationError('Passwords must match')
         return attrs
 
-    def create(self, validated_data: dict) -> User:
-        del validated_data['password_repeat']
-        validated_data['password'] = make_password(validated_data['password'])
+    def create(self, validated_data: dict) -> User:  # Сохраняем пользователя
+        del validated_data['password_repeat']  # Удаляем повтор пароля
+        validated_data['password'] = make_password(validated_data['password'])  # Добавляем зашифрованный пароль
         return super().create(validated_data)
 
 
